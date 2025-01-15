@@ -4,6 +4,8 @@ import com.duxsoftware.challenge.entity.Equipo;
 import com.duxsoftware.challenge.exception.EquipoException;
 import com.duxsoftware.challenge.services.IEquipoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,58 +19,35 @@ public class EquipoController {
 
     @GetMapping
     private List<Equipo> traerTodosLosEquipos() {
-        try {
-            return this.iEquipoService.traerTodosLosEquipos();
-        } catch (Exception e) {
-            throw new EquipoException("Error al obtener todos los equipos.", 500);
-        }
+        return this.iEquipoService.traerTodosLosEquipos();
     }
 
     @GetMapping("/{id}")
     private Equipo traerEquipoPorId(@PathVariable Long id) {
-        try {
-            return this.iEquipoService.traerEquipoPorId(id);
-        } catch (Exception e) {
-            throw new EquipoException("Equipo con id: " + id + " no encontrado.", 404);
-        }
+        return this.iEquipoService.traerEquipoPorId(id);
     }
 
     @GetMapping("/buscar")
     private List<Equipo> buscarEquipoPorNombre(@RequestParam String nombre) {
-        try {
-            List<Equipo> listaEquipoPorNombre = this.iEquipoService.traerEquipoPorNombre(nombre);
-            if(listaEquipoPorNombre.isEmpty())
-                throw new EquipoException("No se encuentra equipo con nombre: " + nombre, 400);
-            return listaEquipoPorNombre;
-        } catch (Exception e) {
-            throw new EquipoException("Error al consultar equipo por nombre.", 400);
-        }
+        return this.iEquipoService.traerEquipoPorNombre(nombre);
     }
 
     @PostMapping
-    private Equipo crearEquipo(@RequestBody Equipo nuevoEquipo) {
-        try {
-            return this.iEquipoService.crearEquipo(nuevoEquipo);
-        } catch (Exception e) {
-            throw new EquipoException("La solicitud es inválida.", 400);
-        }
+    public ResponseEntity<Equipo> crearEquipo(@RequestBody Equipo equipoNuevo) {
+        Equipo equipoCreado = this.iEquipoService.crearEquipo(equipoNuevo);
+        return ResponseEntity.status(HttpStatus.CREATED).body(equipoCreado);
     }
+
 
     @PutMapping("/{id}")
     private Equipo actualizarEquipoPorId(@PathVariable Long id, @RequestBody Equipo equipoActualizado) {
-        try {
-            return this.iEquipoService.actualizarEquipoPorId(id);
-        } catch (Exception e) {
-            throw new EquipoException("Error al actualizar el equipo con ID: " + id, 400);
-        }
+        return this.iEquipoService.actualizarEquipoPorId(id, equipoActualizado);
     }
 
     @DeleteMapping("/{id}")
-    private void borrarEquipoPorId(@PathVariable Long id) {
-        try {
-            this.iEquipoService.borrarEquipoPorId(id);
-        } catch (Exception e) {
-            throw new EquipoException("Error al eliminar el equipo con ID: " + id, 400);
-        }
+    private ResponseEntity<Void> borrarEquipoPorId(@PathVariable Long id) {
+        this.iEquipoService.borrarEquipoPorId(id);
+        return ResponseEntity.noContent().build();
     }
+
 }

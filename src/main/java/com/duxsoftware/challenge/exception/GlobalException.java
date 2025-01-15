@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 @ControllerAdvice
 public class GlobalException {
@@ -14,6 +15,14 @@ public class GlobalException {
         HttpStatus status = HttpStatus.valueOf(ex.getCodigo());
         return new ResponseEntity<>(errorResponse, status);
     }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<Object> manejarTypeMismatchException(MethodArgumentTypeMismatchException ex) {
+        String mensaje = String.format("El valor '%s' debe ser un número.", ex.getValue());
+        ErrorResponse errorResponse = new ErrorResponse(mensaje, HttpStatus.BAD_REQUEST.value());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
 
     public static class ErrorResponse {
         private String mensaje;
