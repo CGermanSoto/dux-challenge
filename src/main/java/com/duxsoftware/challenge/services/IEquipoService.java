@@ -13,7 +13,7 @@ public interface IEquipoService {
 
     public Equipo crearEquipo(Equipo equipoNuevo);
 
-    public Equipo actualizarEquipoPorId(Long id);
+    public Equipo actualizarEquipoPorId(Long id, Equipo equipoActualizado);
 
     public void borrarEquipoPorId(Long id);
 }
