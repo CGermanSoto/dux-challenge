@@ -13,7 +13,7 @@ public class Equipo {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "equipos_seq")
     @SequenceGenerator(name = "equipos_seq", sequenceName = "equipos_seq", allocationSize = 1)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
     @Column(name = "nombre")
     private String nombre;
@@ -24,18 +24,18 @@ public class Equipo {
     @Column(name = "pais")
     private String pais;
 
-    public Equipo(int id, String nombre, String liga, String pais) {
+    public Equipo(Long id, String nombre, String liga, String pais) {
         this.id = id;
         this.nombre = nombre;
         this.liga = liga;
         this.pais = pais;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
