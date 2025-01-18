@@ -33,9 +33,9 @@ cd challenge
 ### 3. Traer los últimos cambios de la rama
 
 ```bash 
-git pull origin master
+git pull origin develop
 ```
-### 4. Abrir proyecto
+### 4. Abrir y compilar
 ```bash 
 Levantar la carpeta con el IDE, compilar.
 ```
