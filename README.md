@@ -48,4 +48,3 @@ docker build -t challenge-api .
 ```bash 
 docker run -p 8080:8080 challenge-api
 ```
-## Ejecutar Test desde Docker
