@@ -1,5 +1,7 @@
 package com.duxsoftware.challenge.services;
 
+import com.duxsoftware.challenge.dto.request.EquipoRequest;
+import com.duxsoftware.challenge.dto.response.EquipoResponse;
 import com.duxsoftware.challenge.entity.Equipo;
 import com.duxsoftware.challenge.exception.EquipoException;
 import com.duxsoftware.challenge.repository.IEquipoDAOHbn;
@@ -41,18 +43,17 @@ class EquipoServiceImplTest {
     @Test
     void testTraerEquipoPorId_EquipoEncontrado() {
         Equipo equipoTest = new Equipo();
-        Long id = 1L;
-        equipoTest.setId(id);
+        equipoTest.setId(1L);
         equipoTest.setNombre("CASLA");
         equipoTest.setPais("Argentina");
         equipoTest.setLiga("Primera División");
 
-        Mockito.when(iEquipoDaoHbn.findById(id)).thenReturn(Optional.of(equipoTest));
+        Mockito.when(iEquipoDaoHbn.findById(1L)).thenReturn(Optional.of(equipoTest));
 
-        Equipo equipo = equipoService.traerEquipoPorId(id);
+        EquipoResponse response = equipoService.traerEquipoPorId(1L);
 
-        Assertions.assertNotNull(equipo);
-        Assertions.assertEquals("CASLA", equipo.getNombre());
+        Assertions.assertNotNull(response);
+        Assertions.assertEquals("CASLA", response.getNombre());
     }
 
     @Test
@@ -73,7 +74,7 @@ class EquipoServiceImplTest {
 
         Mockito.when(iEquipoDaoHbn.findAll()).thenReturn(equiposSimulados);
 
-        List<Equipo> todosLosEquipos = equipoService.traerTodosLosEquipos();
+        List<EquipoResponse> todosLosEquipos = equipoService.traerTodosLosEquipos();
 
         Assertions.assertNotNull(todosLosEquipos);
         Assertions.assertEquals(2, todosLosEquipos.size());
@@ -93,7 +94,7 @@ class EquipoServiceImplTest {
 
         Mockito.when(iEquipoDaoHbn.findByNombreContainingIgnoreCase("CASLA")).thenReturn(equiposSimulados);
 
-        List<Equipo> resultado = equipoService.traerEquipoPorNombre("CASLA");
+        List<EquipoResponse> resultado = equipoService.traerEquipoPorNombre("CASLA");
 
         Assertions.assertNotNull(resultado);
         Assertions.assertEquals(1, resultado.size());
@@ -113,31 +114,51 @@ class EquipoServiceImplTest {
     }
 
     @Test
-    void traerEquipoPorNombre_EquiposEncontrados() {
-        Equipo equipoA = new Equipo();
-        equipoA.setId(1L);
-        equipoA.setNombre("CASLA");
-        equipoA.setPais("Argentina");
-        equipoA.setLiga("Primera División");
+    void testCrearEquipo() {
+        EquipoRequest request = new EquipoRequest();
+        request.setNombre("CASLA");
+        request.setPais("Argentina");
+        request.setLiga("Primera División");
 
-        Equipo equipoB = new Equipo();
-        equipoB.setId(2L);
-        equipoB.setNombre("CASLA Corrientes");
-        equipoB.setPais("Argentina");
-        equipoB.setLiga("Primera División");
+        Equipo equipoCreado = new Equipo();
+        equipoCreado.setId(1L);
+        equipoCreado.setNombre("CASLA");
+        equipoCreado.setPais("Argentina");
+        equipoCreado.setLiga("Primera División");
 
-        List<Equipo> equiposSimulados = Arrays.asList(equipoA, equipoB);
-        Mockito.when(iEquipoDaoHbn.findByNombreContainingIgnoreCase("CASLA")).thenReturn(equiposSimulados);
+        Mockito.when(iEquipoDaoHbn.save(Mockito.any(Equipo.class))).thenReturn(equipoCreado);
 
-        List<Equipo> equiposEncontrados = equipoService.traerEquipoPorNombre("CASLA");
+        EquipoResponse response = equipoService.crearEquipo(request);
 
-        Assertions.assertNotNull(equiposEncontrados);
-        Assertions.assertEquals(2, equiposEncontrados.size());
-        Assertions.assertTrue(equiposEncontrados.contains(equipoA));
-        Assertions.assertTrue(equiposEncontrados.contains(equipoB));
+        Assertions.assertNotNull(response);
+        Assertions.assertEquals("CASLA", response.getNombre());
     }
 
+    @Test
+    void testActualizarEquipo() {
+        Equipo equipoExistente = new Equipo();
+        equipoExistente.setId(1L);
+        equipoExistente.setNombre("Old Name");
+        equipoExistente.setPais("Old Country");
+        equipoExistente.setLiga("Old League");
 
+        Equipo equipoActualizado = new Equipo();
+        equipoActualizado.setId(1L);
+        equipoActualizado.setNombre("New Name");
+        equipoActualizado.setPais("New Country");
+        equipoActualizado.setLiga("New League");
 
+        Mockito.when(iEquipoDaoHbn.findById(1L)).thenReturn(Optional.of(equipoExistente));
+        Mockito.when(iEquipoDaoHbn.save(Mockito.any(Equipo.class))).thenReturn(equipoActualizado);
+
+        EquipoRequest request = new EquipoRequest();
+        request.setNombre("New Name");
+        request.setPais("New Country");
+        request.setLiga("New League");
+
+        EquipoResponse response = equipoService.actualizarEquipoPorId(1L, request);
+
+        Assertions.assertNotNull(response);
+        Assertions.assertEquals("New Name", response.getNombre());
+    }
 }
-

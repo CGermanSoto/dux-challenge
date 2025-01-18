@@ -22,3 +22,4 @@ INSERT INTO equipos (id, nombre, liga, pais) VALUES (21, 'SL Benfica', 'Primeira
 INSERT INTO equipos (id, nombre, liga, pais) VALUES (22, 'Besiktas JK', 'Süper Lig', 'Turquía');
 INSERT INTO equipos (id, nombre, liga, pais) VALUES (23, 'SSC Napoli', 'Serie A', 'Italia');
 INSERT INTO equipos (id, nombre, liga, pais) VALUES (24, 'Atlético Madrid', 'La Liga', 'España');
+ALTER SEQUENCE equipos_seq RESTART WITH (SELECT MAX(id) + 1 FROM equipos);

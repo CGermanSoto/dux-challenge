@@ -1,7 +1,9 @@
 package com.duxsoftware.challenge.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 
+@Schema(description = "Modelo de Entidad Equipo")
 @Entity
 @Table(name = "equipos")
 public class Equipo {

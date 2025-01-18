@@ -1,19 +1,21 @@
 package com.duxsoftware.challenge.services;
 
-import com.duxsoftware.challenge.entity.Equipo;
+import com.duxsoftware.challenge.dto.request.EquipoRequest;
+import com.duxsoftware.challenge.dto.response.EquipoResponse;
+
 import java.util.List;
 
 public interface IEquipoService {
 
-    public List<Equipo> traerTodosLosEquipos();
+    List<EquipoResponse> traerTodosLosEquipos();
 
-    public Equipo traerEquipoPorId(Long id);
+    EquipoResponse traerEquipoPorId(Long id);
 
-    public List<Equipo> traerEquipoPorNombre(String nombre);
+    List<EquipoResponse> traerEquipoPorNombre(String nombre);
 
-    public Equipo crearEquipo(Equipo equipoNuevo);
+    EquipoResponse crearEquipo(EquipoRequest request);
 
-    public Equipo actualizarEquipoPorId(Long id, Equipo equipoActualizado);
+    EquipoResponse actualizarEquipoPorId(Long id, EquipoRequest request);
 
-    public void borrarEquipoPorId(Long id);
+    void borrarEquipoPorId(Long id);
 }
