@@ -1,4 +1,4 @@
-# DUXSoftware 
+# DUXSoftware - Prueba técnica
 ## Tecnologías Utilizadas
 - **Spring Boot 3**
 - **Java 17**
@@ -35,7 +35,10 @@ cd challenge
 ```bash 
 git pull origin master
 ```
-
+### 4. Abrir proyecto
+```bash 
+Levantar la carpeta con el IDE, compilar.
+```
 ## Ejecutar con Docker
 
 ### 1. Construir imagen
@@ -48,3 +51,11 @@ docker build -t challenge-api .
 ```bash 
 docker run -p 8080:8080 challenge-api
 ```
+
+
+### Datos de contacto:
+- **Email**: c.germansoto@gmail.com
+- **Cel**: +54 11 73631331
+- **Linkedin**: https://www.linkedin.com/in/cgermansoto/
+
+Cualquier duda contactar por cualquiera de esos medios.
