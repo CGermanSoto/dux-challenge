@@ -1,4 +1,4 @@
-# DUXSoftware 
+# DUXSoftware - Prueba técnica
 ## Tecnologías Utilizadas
 - **Spring Boot 3**
 - **Java 17**
@@ -33,9 +33,12 @@ cd challenge
 ### 3. Traer los últimos cambios de la rama
 
 ```bash 
-git pull origin master
+git pull origin develop
 ```
-
+### 4. Abrir y compilar
+```bash 
+Levantar la carpeta con el IDE, compilar.
+```
 ## Ejecutar con Docker
 
 ### 1. Construir imagen
@@ -48,4 +51,14 @@ docker build -t challenge-api .
 ```bash 
 docker run -p 8080:8080 challenge-api
 ```
-## Ejecutar Test desde Docker
+
+### Nota:
+###### Se adjunta una carpeta DOC dentro del proyecto, para importar la collection de postman.
+
+
+### Datos de contacto:
+- **Email**: c.germansoto@gmail.com
+- **Cel**: +54 11 73631331
+- **Linkedin**: https://www.linkedin.com/in/cgermansoto/
+
+Cualquier duda contactar por cualquiera de esos medios.

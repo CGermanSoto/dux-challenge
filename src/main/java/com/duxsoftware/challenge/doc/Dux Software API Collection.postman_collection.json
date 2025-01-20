@@ -1,0 +1,259 @@
+{
+	"info": {
+		"_postman_id": "6645cfad-a658-415d-82f0-65954d24e864",
+		"name": "Dux Software API Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28721894"
+	},
+	"item": [
+		{
+			"name": "traerTodosLosEquipos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/equipos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"equipos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "traerEquipoPorID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/equipos/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"equipos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "traerEquipoPorNombre",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "nombre",
+						"value": "barcelona",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/equipos/buscar?nombre=madrid",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"equipos",
+						"buscar"
+					],
+					"query": [
+						{
+							"key": "nombre",
+							"value": "madrid"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crearNuevoEquipo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"CASLA\",\r\n  \"liga\": \"Nueva Liga\",\r\n  \"pais\": \"Nuevo País\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/equipos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"equipos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"test\",\r\n  \"password\": \"12345\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "actualizarEquipo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"\",\r\n  \"liga\": \"\",\r\n  \"pais\": \"\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/equipos/25",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"equipos",
+						"25"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "borrarEquipo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/equipos/25",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"equipos",
+						"25"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
