@@ -52,13 +52,10 @@ docker build -t challenge-api .
 docker run -p 8080:8080 challenge-api
 ```
 
-### Nota:
-###### Se adjunta una carpeta DOC dentro del proyecto, para importar la collection de postman.
-
 
 ### Datos de contacto:
 - **Email**: c.germansoto@gmail.com
 - **Cel**: +54 11 73631331
 - **Linkedin**: https://www.linkedin.com/in/cgermansoto/
 
-Cualquier duda contactar por cualquiera de esos medios.
+Cualquier duda o consulta, contactar por cualquiera de estos medios.
